@@ -4,14 +4,14 @@
         <div class="col">
             <div class="card" style="width: 18rem">
                 <div class="card-header">
-                    Inicio de Sesion
+                    Inicio de Sesion 
                 </div>
                 <div class="card-body">
                 <div class="input-group mb-3">
                     <div class="input-group-text">
                         <i class="bi bi-person-circle"></i>
                     </div>
-                    <input type="text" class="form-control"placeholder="Nombre de Usuario">
+                    <input [{ngModel)]="user" type="text" class="form-control"placeholder="Nombre de Usuario">
                 </div>
                 <div class="input-group">
                     <div class="input-group-text">
@@ -21,7 +21,7 @@
                 </div>
                 </div>
                 <div class="card-footer">
-                 <button class="btn btn-primary">Iniciar Sesion</button>
+                 <button  (click)="entrar"class="btn btn-primary">Iniciar Sesion</button>
                 </div>
             </div>
         </div>
