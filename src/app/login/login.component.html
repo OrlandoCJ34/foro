@@ -2,26 +2,26 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            <div class="card" style="width: 18rem">
-                <div class="card-header">
-                    Inicio de Sesion 
+            <div class="card" style="width: 18rem;">
+                <div class="card-header" >
+                    Inicio de Sesión  
                 </div>
                 <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-text">
-                        <i class="bi bi-person-circle"></i>
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <input [(ngModel)]= "user" type="text" class="form-control" placeholder="Nombre de usuario">
                     </div>
-                    <input [{ngModel)]="user" type="text" class="form-control"placeholder="Nombre de Usuario">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <i class="bi bi-key-fill"></i>
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <i class="bi bi-key-fill"></i>
+                        </div>
+                        <input [(ngModel)]= "pass" type="password" class="form-control" placeholder="Contraseña">
                     </div>
-                    <input type="password" class="form-control"placeholder="Contraseña">
-                </div>
                 </div>
                 <div class="card-footer">
-                 <button  (click)="entrar"class="btn btn-primary">Iniciar Sesion</button>
+                    <button (click)="entrar()" class="btn btn-primary">Entrar</button>
                 </div>
             </div>
         </div>

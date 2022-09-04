@@ -14,6 +14,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 entrar(){
-  alert('Hola')
+  alert('Hola' + "  "+ this.user + " " + this.pass)
 }
 }
