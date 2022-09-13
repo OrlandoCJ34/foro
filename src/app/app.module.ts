@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsersComponent } from './users/users.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes:Routes = [
   {path:'login',component:LoginComponent},
@@ -33,7 +35,10 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
