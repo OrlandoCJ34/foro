@@ -23,10 +23,12 @@ export class LoginComponent implements OnInit {
     this.rest.login(this.user, this.pass).subscribe(
       response => {
         this.rest.setUser(response.user);
+        localStorage.setItem('token', response.token)
         this.router.navigate(['/home']);
         this.msg.success("Bienvenido");
       },
       error => {
+        this.msg.error("Que putas intentabas hacer we", error.status)
 
       }
     );
