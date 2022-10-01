@@ -45,14 +45,29 @@ export class ApiRestService {
       { params: { username: user, password: pass } });
   }
 
+  //CRUD
   getTopics(url: string) {
     if (url == '') url = URL + '/topics';
     const token = localStorage.getItem('token') || '';
     return this.http.get<any>(url,{headers:{Authorization:token}});
   }
 
-  postTopic(post:any){
+  postTopic(topic:any){
     const token = localStorage.getItem('token') || '';
-    return this.http.post<any>(URL+'/topics',{title:post.title}, {headers:{Authorization:token}});
+    return this.http.post<any>(URL+'/topics',{title:topic.title},
+     {headers:{Authorization:token}});
   }
+  putTopic(topic:any){
+    const token = localStorage.getItem('token') || '';
+    return this.http.put<any>(URL+'/topics/'+topic.id,{title:topic.title},
+     {headers:{Authorization:token}});
+  }
+
+  deleteTopic(topic:any){
+    const token = localStorage.getItem('token') || '';
+    return this.http.delete<any>(URL+'/topics/'+topic.id,
+     {headers:{Authorization:token}});
+  }
+
+
 }

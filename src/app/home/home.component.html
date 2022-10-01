@@ -1,11 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col"></div>
-        <div class="col">
-            <div class="card mt-3 mb-3">
-                <div class="card-header">
+        <div class="col" >
+            <div class= "card mt-3 mb-3">
+             <div></div>
+             <div class="card-header text-white"  style="background-color: #00AA9E">
                     Agregar Tema
-                </div>
+                </div >
                 <div class="card-body">
                     <div class="input-group">
                         <div class="input-group-text">
@@ -15,14 +16,14 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <input (click)="createTopic()" type="button" value="Guardar" class="btn btn-success float-end">
+                    <input (click)="createTopic()" type="button" value="Guardar" class="btn btn-primary float-end">
                 </div>
             </div>
         </div>
         <div class="col"></div>
     </div>
     <div class="row">
-        <table class="table table-dark table-hover">
+        <table class="table table-hover" [class.table-dark]="user.role =='admin'"  [class.table-light]="user.role !='admin'" >
             <thead>
                 <tr>
                     <th>Id</th>
@@ -34,17 +35,60 @@
                 <tr *ngFor="let topic of topics">
                     <td>{{topic.id}}</td>
                     <td>{{topic.title}}</td>
-                    <th><button class="btn btn-danger float-end"><i class="bi bi-trash-fill"></i></button></th>
+                    <th>
+                        <button *ngIf="user.role == 'admin' || user.id == topic.user_id" data-bs-toggle="modal" data-bs-target="#deleteTopic" (click)="selectTmpTopic(topic)" class="btn btn-danger float-end"><i class="bi bi-trash-fill"></i></button>
+                        <button *ngIf="user.role == 'admin' ||  user.id == topic.user_id" data-bs-toggle="modal" data-bs-target="#editTopic" (click)="selectTmpTopic(topic)" class="btn btn-warning float-end"><i class="bi bi-pencil-square"></i></button>
+                    </th>
                 </tr>
             </tbody>
         </table>
-        <!-- paginacion-->
+        <!-- para la paginacion -->
         <nav>
-            <ul class="pagination ">
+            <ul class="pagination">
                 <ng-container *ngFor="let page of pages">
-                    <li class="page-item"><button (click)="readTopics(page.url)" class="btn btn-primary">{{page.label}}</button></li>
+                    <li class="page-item">
+                        <button (click)="readTopics(page.url)" class="page-link" [class.active]="page.active">{{page.label}}</button>
+                    </li>
                 </ng-container>
             </ul>
         </nav>
     </div>
 </div>
+
+<!-- Ventana para editar el topic (tema) -->
+<div class="modal fade" id="editTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: #00AA9E">
+          <h5 class="modal-title" id="exampleModalLabel" >Editar tema</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input [(ngModel)]="tmpTopic.title" type="text" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="updateTopic()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana para ELIMINAR el topic (tema) -->
+<div class="modal fade" id="deleteTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: #00AA9E">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar tema</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Esta seguro de eliminar el tema <b>{{tmpTopic.title}}</b>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">No</button>
+          <button (click)="deleteTopic()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         this.msg.success("Bienvenido");
       },
       error => {
-        this.msg.error("Que putas intentabas hacer we", error.status)
+        this.msg.error("Contraseña Incorrercta :,v", error.status)
 
       }
     );
